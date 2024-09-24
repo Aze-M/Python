@@ -37,7 +37,7 @@ class ImageHandler:
 #grab video feed
 
 #vidCamera = cv2.VideoCapture(0)
-vidCamera = cv2.VideoCapture("BadApple.mp4")
+vidCamera = cv2.VideoCapture(0)
 
 ret = True
 
