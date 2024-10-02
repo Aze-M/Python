@@ -50,5 +50,16 @@ for _ in range(10):
     duplicates_set(teststring)
 
 print(time.perf_counter() - now)
+tracemalloc.stop()
 
-print(vec_alloc_tracked, set_alloc_tracked)
+stats_set: tracemalloc.Statistic = max_set_alloc.statistics('traceback')
+stats_vec: tracemalloc.Statistic = max_vec_alloc.statistics('traceback')
+
+for list in stats_set[:5]:
+    print("%s memory blocks: %.1f KiB" % (list.count, list.size / 1024))
+    for line in list.traceback.format():
+        print(line)
+
+for list in stats_vec[:5]:
+    for line in list.traceback.format():
+        print(line)
